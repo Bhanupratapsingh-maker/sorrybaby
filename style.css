@@ -72,7 +72,8 @@ h1 {
     gap: 20px;
     height: 60px;
     align-items: center;
-    position: relative;
+    position: relative; /* Fixed: Creates a coordinate sandbox for the No button */
+    width: 100%;        /* Fixed: Gives the button an exact area to move around in */
 }
 
 .btn {
@@ -81,7 +82,7 @@ h1 {
     border: none;
     border-radius: 25px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
     font-weight: bold;
 }
 
@@ -89,6 +90,7 @@ h1 {
     background-color: var(--deep-pink);
     color: white;
     box-shadow: 0 5px 15px rgba(255, 105, 180, 0.4);
+    z-index: 15;
 }
 
 #yesBtn:hover {
@@ -99,7 +101,8 @@ h1 {
 #noBtn {
     background-color: #f0f0f0;
     color: #777;
-    position: absolute;
+    position: absolute; /* Allows JS to dynamically override its top/left values */
+    z-index: 20;
 }
 
 /* Success Message hidden by default */
