@@ -4,7 +4,7 @@ function createHeart() {
     heart.classList.add('heart');
     heart.innerHTML = '❤️';
     heart.style.left = Math.random() * 100 + 'vw';
-    heart.style.animationDuration = Math.random() * 3 + 3 + 's'; // 3-6 seconds
+    heart.style.animationDuration = Math.random() * 3 + 3 + 's';
     heart.style.fontSize = Math.random() * 20 + 15 + 'px';
     document.body.appendChild(heart);
 
@@ -14,20 +14,18 @@ function createHeart() {
 }
 setInterval(createHeart, 300);
 
-// 2. The Interactive "Run Away" No Button
+// 2. The Interactive "Run Away" No Button (Guaranteed Jump)
 function moveButton() {
     const noBtn = document.getElementById('noBtn');
-    const container = document.querySelector('.btn-container');
     
-    // Get boundaries of the button container so it doesn't fly off screen
-    const containerWidth = container.clientWidth;
-    
-    // Generate random coordinates within the container limits
-    const randomX = Math.floor(Math.random() * (containerWidth - 80));
-    const randomY = Math.floor((Math.random() - 0.5) * 150); 
+    // Generate values between 5% and 85% for horizontal width
+    const randomX = Math.floor(Math.random() * 75) + 5;
+    // Generate values between 10px and 90px for vertical alignment
+    const randomY = Math.floor(Math.random() * 80) + 10;
 
-    noBtn.style.left = randomX + 'px';
-    noBtn.style.top = randomY + 'px';
+    // Use percentages for X to make sure it handles mobile/desktop screens easily
+    noBtn.style.left = randomX + "%";
+    noBtn.style.top = randomY + "px";
 }
 
 // 3. Handle the "Yes" Button Click
