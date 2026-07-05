@@ -16,7 +16,7 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    overflow: hidden; /* Prevents scrollbars if the button jumps near edges */
+    overflow: hidden;
     position: relative;
 }
 
@@ -70,9 +70,8 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 40px;
+    gap: 20px;
     height: 80px;
-    position: relative;
 }
 
 .btn {
@@ -89,7 +88,6 @@ h1 {
     color: white;
     box-shadow: 0 5px 15px rgba(255, 105, 180, 0.4);
     transition: transform 0.2s ease;
-    z-index: 15;
 }
 
 #yesBtn:hover {
@@ -100,12 +98,8 @@ h1 {
 #noBtn {
     background-color: #f0f0f0;
     color: #777;
-    /* FIXED: Using fixed positioning completely breaks it away from layout restrictions */
-    position: fixed; 
-    z-index: 999;
-    /* Default initial position rendering it neatly near the Yes button on load */
-    margin-left: 140px; 
-    transition: all 0.15s ease-out;
+    /* Removed absolute/fixed entirely to let transform rule everything */
+    transition: transform 0.1s ease-out; 
 }
 
 /* Success Message */
