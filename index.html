@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>I'm Sorry, Tanishka! 🌸</title>
-    <!-- Linking the external CSS file -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -20,7 +19,8 @@
         <h3>Will you forgive me?</h3>
         <div class="btn-container">
             <button class="btn" id="yesBtn" onclick="forgiven()">Yes, I do!</button>
-            <button class="btn" id="noBtn" onmouseover="moveButton()" onclick="moveButton()">No 😤</button>
+            <!-- Added both mouseenter (for desktop hover) and touchstart (for mobile taps) -->
+            <button class="btn" id="noBtn" onmouseenter="moveButton()" ontouchstart="moveButton()" onclick="moveButton()">No 😤</button>
         </div>
     </div>
 
@@ -33,7 +33,6 @@
         <span style="font-size: 50px;">🍕🍦🍫🌸</span>
     </div>
 
-    <!-- Linking the external JavaScript file -->
     <script src="script.js"></script>
 </body>
 </html>
