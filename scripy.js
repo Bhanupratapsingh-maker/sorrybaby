@@ -14,22 +14,34 @@ function createHeart() {
 }
 setInterval(createHeart, 300);
 
-// 2. The Interactive "Run Away" No Button (Guaranteed Jump)
+// 2. Viewport-Wide Runaway Script
 function moveButton() {
     const noBtn = document.getElementById('noBtn');
     
-    // Generate values between 5% and 85% for horizontal width
-    const randomX = Math.floor(Math.random() * 75) + 5;
-    // Generate values between 10px and 90px for vertical alignment
-    const randomY = Math.floor(Math.random() * 80) + 10;
+    // Completely clear out the initial center alignment margin once she hovers
+    noBtn.style.marginLeft = "0px";
 
-    // Use percentages for X to make sure it handles mobile/desktop screens easily
-    noBtn.style.left = randomX + "%";
-    noBtn.style.top = randomY + "px";
+    // Measure the exact visible screen dimension dimensions
+    const screenWidth = window.innerWidth;
+    const screenHeight = window.innerHeight;
+
+    // Calculate maximum safe bounds so the button doesn't shoot off the edge
+    const maxLeft = screenWidth - noBtn.offsetWidth - 20;
+    const maxTop = screenHeight - noBtn.offsetHeight - 20;
+
+    // Generate coordinates anywhere across her entire view screen
+    const randomLeft = Math.max(20, Math.floor(Math.random() * maxLeft));
+    const randomTop = Math.max(20, Math.floor(Math.random() * maxTop));
+
+    // Force application via explicit pixel parameters
+    noBtn.style.left = randomLeft + "px";
+    noBtn.style.top = randomTop + "px";
 }
 
 // 3. Handle the "Yes" Button Click
 function forgiven() {
     document.getElementById('mainCard').style.display = 'none';
+    // Hide the floating button completely when she finally says yes
+    document.getElementById('noBtn').style.display = 'none';
     document.getElementById('successCard').style.display = 'block';
 }
