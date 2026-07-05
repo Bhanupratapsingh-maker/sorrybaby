@@ -1,0 +1,118 @@
+:root {
+    --primary-pink: #ffb6c1;
+    --deep-pink: #ff69b4;
+    --soft-bg: #fff0f5;
+    --text-color: #4a4a4a;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--soft-bg);
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Floating Hearts Background */
+.heart {
+    position: absolute;
+    color: var(--primary-pink);
+    font-size: 20px;
+    animation: float 6s linear infinite;
+    opacity: 0.6;
+    z-index: 1;
+}
+
+@keyframes float {
+    0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+}
+
+/* Main Card Container */
+.container {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(255, 105, 180, 0.2);
+    text-align: center;
+    max-width: 500px;
+    width: 90%;
+    z-index: 10;
+    border: 2px solid #ffe4e1;
+}
+
+h1 {
+    color: var(--deep-pink);
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.apology-text {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.highlight {
+    color: var(--deep-pink);
+    font-weight: bold;
+}
+
+/* Buttons layout */
+.btn-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    height: 60px;
+    align-items: center;
+    position: relative;
+}
+
+.btn {
+    padding: 12px 30px;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+}
+
+#yesBtn {
+    background-color: var(--deep-pink);
+    color: white;
+    box-shadow: 0 5px 15px rgba(255, 105, 180, 0.4);
+}
+
+#yesBtn:hover {
+    transform: scale(1.1);
+    background-color: #e0529c;
+}
+
+#noBtn {
+    background-color: #f0f0f0;
+    color: #777;
+    position: absolute;
+}
+
+/* Success Message hidden by default */
+.success-message {
+    display: none;
+    animation: fadeIn 0.5s ease forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.success-message h2 {
+    color: var(--deep-pink);
+}
