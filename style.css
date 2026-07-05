@@ -16,7 +16,7 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    overflow-x: hidden;
+    overflow: hidden; /* Prevents scrollbars if the button jumps near edges */
     position: relative;
 }
 
@@ -71,9 +71,8 @@ h1 {
     justify-content: center;
     align-items: center;
     gap: 40px;
-    height: 120px;       /* Increased height to give the button vertical room */
+    height: 80px;
     position: relative;
-    width: 100%;
 }
 
 .btn {
@@ -90,6 +89,7 @@ h1 {
     color: white;
     box-shadow: 0 5px 15px rgba(255, 105, 180, 0.4);
     transition: transform 0.2s ease;
+    z-index: 15;
 }
 
 #yesBtn:hover {
@@ -100,11 +100,12 @@ h1 {
 #noBtn {
     background-color: #f0f0f0;
     color: #777;
-    position: absolute; 
-    /* Starting positions so the browser unlocks positioning coordinates */
-    left: 60%;
-    top: 40px;
-    transition: all 0.1s ease; /* Makes the runaway jump smooth */
+    /* FIXED: Using fixed positioning completely breaks it away from layout restrictions */
+    position: fixed; 
+    z-index: 999;
+    /* Default initial position rendering it neatly near the Yes button on load */
+    margin-left: 140px; 
+    transition: all 0.15s ease-out;
 }
 
 /* Success Message */
