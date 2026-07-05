@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I'm Sorry, Tanishka! 🌸</title>
+    <style>
+        :root {
+            --primary-pink: #ffb6c1;
+            --deep-pink: #ff69b4;
+            --soft-bg: #fff0f5;
+            --text-color: #4a4a4a;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--soft-bg);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Floating Hearts Background */
+        .heart {
+            position: absolute;
+            color: var(--primary-pink);
+            font-size: 20px;
+            animation: float 6s linear infinite;
+            opacity: 0.6;
+            z-index: 1;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* Main Card Container */
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.2);
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+            z-index: 10;
+            border: 2px solid #ffe4e1;
+        }
+
+        h1 {
+            color: var(--deep-pink);
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .apology-text {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .highlight {
+            color: var(--deep-pink);
+            font-weight: bold;
+        }
+
+        /* Buttons layout */
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 50px;
+            height: 80px;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        #yesBtn {
+            background-color: var(--deep-pink);
+            color: white;
+            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.4);
+            transition: transform 0.2s ease;
+        }
+
+        #yesBtn:hover {
+            transform: scale(1.1);
+            background-color: #e0529c;
+        }
+
+        #noBtn {
+            background-color: #f0f0f0;
+            color: #777;
+            /* Force the button to track screen dimensions completely */
+            position: fixed;
+            z-index: 9999;
+            /* Fallback positioning for first load */
+            top: 57%;
+            left: 53%;
+        }
+
+        /* Success Message */
+        .success-message {
+            display: none;
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="mainCard">
+        <h1>I'm So Sorry, Tanishka! 🥺💕</h1>
+        <p class="apology-text">
+            I know I messed up big time by going out even after you told me not to. It was really silly of me, and I totally understand why you are mad at me. 
+            <br><br>
+            You mean the world to me, and seeing you upset hurts. I promise to listen better next time. Can we please make up? <span class="highlight">I love you!</span>
+        </p>
+        
+        <h3>Will you forgive me?</h3>
+        <div class="btn-container">
+            <button class="btn" id="yesBtn" onclick="forgiven()">Yes, I do!</button>
+            <!-- Catching every possible interaction: hover, mouse move, and touch triggers -->
+            <button class="btn" id="noBtn" onmouseover="moveButton()" onmouseenter="moveButton()" ontouchstart="moveButton()">No 😤</button>
+        </div>
+    </div>
+
+    <!-- Forgiven Screen -->
+    <div class="container success-message" id="successCard">
+        <h1>Yayyy! Thank You, Tanishka! 🥰❤️</h1>
+        <p class="apology-text">
+            You are the best girlfriend in the whole wide world! I promise to make it up to you with lots of chocolates, your favorite food, and absolute attention. 
+        </p>
+        <span style="font-size: 50px;">🍕🍦🍫🌸</span>
+    </div>
+
+    <script>
+        // 1. Generate Floating Hearts Background
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 3 + 3 + 's';
+            heart.style.fontSize = Math.random() * 20 + 15 + 'px';
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 6000);
+        }
+        setInterval(createHeart, 300);
+
+        // 2. Viewport Teleportation Logic
+        function moveButton() {
+            const noBtn = document.getElementById('noBtn');
+
+            // Calculate active screen viewing spaces 
+            const padding = 50;
+            const screenWidth = window.innerWidth - noBtn.offsetWidth - padding;
+            const screenHeight = window.innerHeight - noBtn.offsetHeight - padding;
+
+            // Generate totally random screen grid placement targets
+            const randomX = Math.max(padding, Math.floor(Math.random() * screenWidth));
+            const randomY = Math.max(padding, Math.floor(Math.random() * screenHeight));
+
+            // Force browser engine window coordinates assignment 
+            noBtn.style.left = randomX + "px";
+            noBtn.style.top = randomY + "px";
+        }
+
+        // 3. Handle the "Yes" Button Click
+        function forgiven() {
+            document.getElementById('mainCard').style.display = 'none';
+            document.getElementById('noBtn').style.display = 'none';
+            document.getElementById('successCard').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
